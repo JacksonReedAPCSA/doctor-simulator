@@ -1,6 +1,7 @@
 # doctor-simulator
 Jackson-Reed High School java project by Damian and Andrei
 please find extensions for idea in DoctorSimulator.java
+
 Copied:
 /**
  * A NOT SO ACCURATE DOCTOR SIMULATOR, TRY TO KEEP YOUR PATIENT ALIVE
