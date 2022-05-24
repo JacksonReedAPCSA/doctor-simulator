@@ -53,7 +53,7 @@ public class Grapher {
         }
         for (int i = 0; i < data.size(); i++) {
             window.setPenColor(Draw.RED);
-            window.filledCircle(i, data.get(i), 0.25);
+            window.filledCircle(i, data.get(i), xUBOUND/50);
         }
         window.setPenColor(Draw.RED);
         window.line(data.size() - 2, data.get(data.size() - 2), data.size() - 1, data.get(data.size() - 1));
