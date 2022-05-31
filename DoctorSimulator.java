@@ -76,33 +76,32 @@ public class DoctorSimulator {
                 System.out.println("What would you like to do?");
                 System.out.println("1 - Use Equipments");
                 System.out.println("2 - Use Medicine");
+                System.out.println("3 - Help Page");
                 int choice = scan.nextInt();
                 if (choice == 1) {
                     System.out.println(
                             "\n1 - Thermometer\n2 - Heart rate monitor\n3 - Blanket\n4 - Defibrillators\n5 - Ice pack\n6 - Flute");
                     int choiceEq = scan.nextInt();
-                    if (choiceEq == 1) {
-                        System.out.println("" + patient.getTemp() + " celcius");
+                    String equipToString = new String();
+                    switch (choiceEq) {
+                      case 1:  equipToString = "" + patient.getTemp() + " celcius";
+                                               break;
+                      case 2:  equipToString = "" + patient.getBpm() + " beats per minute";
+                                               break;
+                      case 3:  equipToString = "Used a blanket, " + name + " gets warmer";
+                                               patient.addTemp();
+                                               break;
+                      case 4:  equipToString = "Used a defibrillators, " + name + " gets their heart pumping";
+                                               patient.addBpm();
+                                               break;
+                      case 5:  equipToString = "Used an ice pack, " + name + " gets colder";
+                                               patient.decTemp();
+                                               break;
+                      case 6:  equipToString = "Played with the flute, " + name + " hearts gets calmer";
+                                               patient.decBpm();
+                                               break;
                     }
-                    if (choiceEq == 2) {
-                        System.out.println("" + patient.getBpm() + " beats per minute");
-                    }
-                    if (choiceEq == 3) {
-                        System.out.println("Used a blanket, " + name + " gets warmer");
-                        patient.addTemp();
-                    }
-                    if (choiceEq == 4) {
-                        System.out.println("Used a defibrillators, " + name + " gets their heart pumping");
-                        patient.addBpm();
-                    }
-                    if (choiceEq == 5) {
-                        System.out.println("Used an ice pack, " + name + " gets colder");
-                        patient.decTemp();
-                    }
-                    if (choiceEq == 6) {
-                        System.out.println("Played with the flute, " + name + " hearts gets calmer");
-                        patient.decBpm();
-                    }
+                    System.out.println(equipToString);
                     // if safe false, continue event
                     isCritical = patient.checkCondition(36, 38, 80, 100);
 
@@ -132,6 +131,7 @@ public class DoctorSimulator {
                     turnLeft--;
                 }
                 isDead = patient.checkCondition(34, 44, 40, 160);
+                
             }
             if (isDead) {
                 break;
@@ -142,36 +142,35 @@ public class DoctorSimulator {
             System.out.println("What would you like to do?");
             System.out.println("1 - Use Equipments");
             System.out.println("2 - Use Medicine");
+            System.out.println("3 - Help Page");
             int choice = scan.nextInt();
-            if (choice == 1) {
-                System.out.println(
-                        "\n1 - Thermometer\n2 - Heart rate monitor\n3 - Blanket\n4 - Defibrillators\n5 - Ice pack\n6 - Flute");
-                int choiceEq = scan.nextInt();
-                if (choiceEq == 1) {
-                    System.out.println("" + patient.getTemp() + " celcius");
-                }
-                if (choiceEq == 2) {
-                    System.out.println("" + patient.getBpm() + " beats per minute");
-                }
-                if (choiceEq == 3) {
-                    System.out.println("Used a blanket, " + name + " gets warmer");
-                    patient.addTemp();
-                }
-                if (choiceEq == 4) {
-                    System.out.println("Used a defibrillators, " + name + " gets their heart pumping");
-                    patient.addBpm();
-                }
-                if (choiceEq == 5) {
-                    System.out.println("Used an ice pack, " + name + " gets colder");
-                    patient.decTemp();
-                }
-                if (choiceEq == 6) {
-                    System.out.println("Played with the flute, " + name + " hearts gets calmer");
-                    patient.decBpm();
-                }
-                events.triggerCondition();
-                isEvent = events.getEvent();
-            }
+                if (choice == 1) {
+                    System.out.println(
+                            "\n1 - Thermometer\n2 - Heart rate monitor\n3 - Blanket\n4 - Defibrillators\n5 - Ice pack\n6 - Flute");
+                    int choiceEq = scan.nextInt();
+                    String equipToString = new String();
+                    switch (choiceEq) {
+                      case 1:  equipToString = "" + patient.getTemp() + " celcius";
+                                               break;
+                      case 2:  equipToString = "" + patient.getBpm() + " beats per minute";
+                                               break;
+                      case 3:  equipToString = "Used a blanket, " + name + " gets warmer";
+                                               patient.addTemp();
+                                               break;
+                      case 4:  equipToString = "Used a defibrillators, " + name + " gets their heart pumping";
+                                               patient.addBpm();
+                                               break;
+                      case 5:  equipToString = "Used an ice pack, " + name + " gets colder";
+                                               patient.decTemp();
+                                               break;
+                      case 6:  equipToString = "Played with the flute, " + name + " hearts gets calmer";
+                                               patient.decBpm();
+                                               break;
+                    }
+                    System.out.println(equipToString);
+                    events.triggerCondition();
+                    isEvent = events.getEvent();
+                 }
 
             if (choice == 2) {
                 System.out.println("\nCombine 3 ingredients, make different effects:");
@@ -187,6 +186,23 @@ public class DoctorSimulator {
                 System.out.println(medicine);
             }
             isDead = patient.checkCondition(34, 44, 40, 160);
+            
+            if (choice == 3) {
+              System.out.println("You've reached the help page!");
+              System.out.println("Your goal is to keep your patient in the correct temperature and Bpm range.");
+              System.out.println("You can check the patient's temperature and Bpm by using the Thermometer and the Heart Rate Sensor in the equipment page.");
+              System.out.println("Once you have seen your patients statistics you can use other equipment to move the patient into the correct range.");
+              System.out.println("Blanket - Increases Temperature.");
+              System.out.println("Defibrillators - Increases Bpm.");
+              System.out.println("Ice Pack - Decreases Temperature.");
+              System.out.println("Flute - Decreases Bpm.");
+              System.out.println("You may also create medicine to help your patient.");
+              System.out.println("To create medicine you must select 3 different ingredients to create your remedy(you may pick the same ingredient multiple times).");
+              System.out.println("Mint - Dec Temperature.");
+              System.out.println("Chili - Inc Temperature.");
+              System.out.println("Coffee - Inc Bpm.");
+              System.out.println("Chocolate - Dec Bpm.");
+            }
         }
 
         //WHEN isDead = true
@@ -198,4 +214,6 @@ public class DoctorSimulator {
         tempGraph.drawGraph();
         bpmGraph.drawGraph();
     }
+    
+    //public String equipmentSwitcher(
 }
